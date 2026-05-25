@@ -6,6 +6,7 @@ class Maiz {
  var property position = game.at(1, 1)
 
 
+
 	method cambiaEstadoAListoParaSembrar(){
 	self.estado(semillaMaiz)
 	}
@@ -16,9 +17,7 @@ class Maiz {
 		return estado.imagen()
 	}
 	
-	method esCultivo(){
-		return true
-	}
+	
 
     method crecer() {
          estado.siguienteEstado()
@@ -45,9 +44,7 @@ class Trigo {
 		// TODO: hacer que devuelva la imagen que corresponde
 		return "wheat_1.png"
 	}
-	method esCultivo(){
-		return true
-	}
+	
 	method crecer() {
          estado.siguienteEstado()
     }
@@ -68,11 +65,12 @@ class Tomaco {
 		// TODO: hacer que devuelva la imagen que corresponde
 		return "tomaco.png"
 	}
-	method esCultivo(){
-		return true
-	}
+	
 	method crecer() {
          estado.siguienteEstado()
+		 game.removeVisual(self)
+		 game.addVisual(game.at(granjero.coordenadaEnXDelGranjero(), granjero.coordenadaEnYDelGranjero() +1))
+
     }
 }
 
@@ -82,6 +80,9 @@ class Tomaco {
 // Estados del maíz// 
 object semillaMaiz { 
 
+method estaListoParaRegar(){
+	return true
+}
 method estaListoParaSembrar(){
 	return true
 }
@@ -119,6 +120,10 @@ object maizAdulta {
 
 object etapaDeEvolucion0{
 
+method estaListoParaRegar(){
+	return true
+}
+
 method estaListoParaSembrar(){
 	return true
 }
@@ -152,6 +157,9 @@ object etapaDeEvolucion1{
 	method estaListoParaCosechar(){
 			return false
 		}
+	method estaListoParaRegar(){
+	return true
+}
 }
 
 
@@ -172,24 +180,30 @@ object etapaDeEvolucion2{
 	method estaListoParaCosechar(){
 			return true
 	}
+	method estaListoParaRegar(){
+	return true
+}
 }
 
 object etapaDeEvolucion3{
 
 	method estaListoParaSembrar(){
-		return false
-	}
+			return false
+	}	
 	method image(){
 
-		return "wheat_3.png" 
+			return "wheat_3.png" 
 	}
 	method siguienteEstado(){
-		return etapaDeEvolucion0
+			return etapaDeEvolucion0
 	}
 
 	method estaListoParaCosechar(){
 			return true
 		}
+	method estaListoParaRegar(){
+			return true
+}
 }
 
 
@@ -199,9 +213,13 @@ object etapaDeEvolucion3{
 
 object tomacoRecienPlantado{
 
+	method estaListoParaRegar(){
+		return true
+    }
+
 	method estaListoParaSembrar(){
-	return true
-}
+		return true
+	}
 
 	method image(){
 		return "tomaco.png"
