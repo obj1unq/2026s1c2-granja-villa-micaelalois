@@ -1,6 +1,7 @@
 import wollok.game.*
 import personaje.*
 import cultivos.*
+import granja.*
 
 program farmville {
 	//  CONFIG	

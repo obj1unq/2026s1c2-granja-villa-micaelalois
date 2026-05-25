@@ -1,5 +1,6 @@
 import wollok.game.*
 import personaje.* 
+import granja.*
 
 class Maiz {
  var property estado = semillaMaiz
@@ -91,7 +92,7 @@ method imagen() {
 	}
 
 method siguienteEstado(){
-	return maizAdulta
+	Maiz.estado(maizAdulta)
 }
 method estaListoParaCosechar(){
 		return false
@@ -133,7 +134,7 @@ method image(){
 }
 
 method siguienteEstado(){
-	return etapaDeEvolucion1
+	Trigo.estado(etapaDeEvolucion1)
 }
 method estaListoParaCosechar(){
 		return false
@@ -151,7 +152,7 @@ object etapaDeEvolucion1{
 		return "wheat_1.png" 
 	}
 	method siguienteEstado(){
-		return etapaDeEvolucion2
+	Trigo.estado(etapaDeEvolucion2)
 	}
 
 	method estaListoParaCosechar(){
@@ -174,7 +175,7 @@ object etapaDeEvolucion2{
 		return "wheat_2.png" 
 	}
 	method siguienteEstado(){
-		return etapaDeEvolucion3
+	 Trigo.estado(etapaDeEvolucion3)
 	}
 
 	method estaListoParaCosechar(){
@@ -195,7 +196,7 @@ object etapaDeEvolucion3{
 			return "wheat_3.png" 
 	}
 	method siguienteEstado(){
-			return etapaDeEvolucion0
+	Trigo.estado(etapaDeEvolucion0)
 	}
 
 	method estaListoParaCosechar(){
@@ -212,6 +213,11 @@ object etapaDeEvolucion3{
 //Estados del tomaco//
 
 object tomacoRecienPlantado{
+
+	method siguienteEstado() {
+		Tomaco.estado(tomacoCrecido)
+	  
+	}
 
 	method estaListoParaRegar(){
 		return true
