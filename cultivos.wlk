@@ -111,6 +111,10 @@ object maizAdulta {
 
 		return "corn_adult.png" 
 	}
+
+	method estaListoParaRegar(){
+		return false 
+	}
     method siguienteEstado(planta){
 		return planta
 	}
@@ -217,14 +221,13 @@ object etapaDeEvolucion3{
 object tomacoRecienPlantado{
 
 	method siguienteEstado(planta) {
-        const posicionActual = planta.position()
-        var nuevaY = posicionActual.y() + 1
+        planta.estado(tomacoCrecido)
         
-        if (nuevaY >= game.height()) {
-            nuevaY(0)
+        if (planta.position().y() < 9) {
+            planta.position(game.at(planta.position().x(), planta.position().y() + 1))
+        } else {
+            planta.position(game.at(planta.position().x(), 0))
         }
-        
-        planta.position(game.at(posicionActual.x(), nuevaY))
 		game.addVisual(planta.position())
     }
 
@@ -251,6 +254,10 @@ object tomacoCrecido{
 		
 		return "tomaco.png"
 	}
+
+    method estaListoParaRegar(){
+		return false
+    }
 
 	method siguienteEstado(planta) {
 		planta.estado(self)

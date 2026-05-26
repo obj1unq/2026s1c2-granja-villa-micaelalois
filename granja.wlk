@@ -12,10 +12,10 @@ method estaPosicionEstaVacia(){
 
 method hayAlgoParaRegarAca() {
 
-	if(!self.estaPosicionEstaVacia()){
-        return self.cultivoActual().estado().estaListoParaRegar()
-    } else { return false}
+	return !self.estaPosicionEstaVacia() && self.cultivoActual().estado().estaListoParaRegar()
+       
 }
+
 
 method objetosSinGranjero() {
         return game.getObjectsIn(granjero.position()).filter({ obj => obj != granjero })
