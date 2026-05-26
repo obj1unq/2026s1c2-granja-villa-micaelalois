@@ -16,7 +16,7 @@ program farmville {
 	keyboard.r().onPressDo({ granjero.regar()})
 	keyboard.c().onPressDo({ granjero.cosechar()})
 	keyboard.v().onPressDo({ granjero.vender()})
-	keyboard.space().onPressDo({ game.say(granjero, "Tengo hasta ahora" + granjero.plantasCosechadasHastaAhora.toString() + "plantas cosechadas" + "Y además tengo" + granjero.oroAcumulado.toString() + "oro hasta el momento")})
+	keyboard.space().onPressDo({ granjero.darInformacionDeCosechaYOro()})
 
 
 

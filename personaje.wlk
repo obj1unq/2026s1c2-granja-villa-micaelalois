@@ -64,6 +64,10 @@ method vender(){
     self.oroAcumulado(self.oroAcumulado() + gananciasEnEstaInstancia)
 	plantasCosechadasHastaAhora.clear() 
 }
+
+method darInformacionDeCosechaYOro(){
+	game.say(self, "Tengo hasta ahora" + granjero.plantasCosechadasHastaAhora.toString() + "plantas cosechadas" + "Y además tengo" + granjero.oroAcumulado.toString() + "oro hasta el momento")
+}
 }
 
 
