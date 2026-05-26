@@ -10,6 +10,7 @@ object granjero {
 	var property position = game.center()
 	const property image = "fplayer.png"
 	var property plantasCosechadasHastaAhora = []
+	var property oroAcumulado = 0
 
 
 method sembrarMaiz(){
@@ -58,6 +59,11 @@ method cosechar(){
   }
 }
 
+method vender(){
+	const gananciasEnEstaInstancia = (plantasCosechadasHastaAhora.sum({planta => planta.valorDeVenta()}))//NO OLVIDARSE LAS LLAVES DEL LADO DE ADENTRO
+    self.oroAcumulado(self.oroAcumulado() + gananciasEnEstaInstancia)
+	plantasCosechadasHastaAhora.clear() 
+}
 }
 
 

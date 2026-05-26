@@ -6,6 +6,10 @@ class Maiz {
  var property estado = semillaMaiz
  var property position = game.at(1, 1)
 
+	method valorDeVenta(){
+		return 150 
+	}
+
 	method estaListoParaCosechar(){
 		return estado.estaListoParaCosechar()
 
@@ -37,7 +41,9 @@ class Trigo {
 	 var property estado = etapaDeEvolucion0
      var property position = game.at(1, 1)
 
-
+	method valorDeVenta(){
+		return (estado.nroDeEtapa() - 1) * 100
+	}
     method estaListoParaCosechar(){
 		return estado.estaListoParaCosechar()
 	}
@@ -65,6 +71,11 @@ class Trigo {
 class Tomaco {
 	var property estado = tomacoRecienPlantado
 	var property position = game.at(1, 1)
+
+
+	method valorDeVenta(){
+		return 80
+	}
 
 	method estaListoParaCosechar(){
 		return estado.estaListoParaCosechar()
@@ -141,6 +152,10 @@ object maizAdulta {
 
 object etapaDeEvolucion0{
 
+	method nroDeEtapa(){
+		return 0
+	}
+
 	method estaListoParaRegar(){
 		return true
     }
@@ -160,6 +175,10 @@ object etapaDeEvolucion0{
 }
 
 object etapaDeEvolucion1{
+
+	method nroDeEtapa(){
+		return 1
+	}
 
 	method estaListoParaSembrar(){
 		return  false
@@ -184,6 +203,10 @@ object etapaDeEvolucion1{
 
 object etapaDeEvolucion2{
 
+	method nroDeEtapa(){
+		return 2
+	}
+
 	method estaListoParaSembrar(){
 		return false
 	}
@@ -204,6 +227,10 @@ object etapaDeEvolucion2{
 }
 
 object etapaDeEvolucion3{
+
+	method nroDeEtapa(){
+		return 3
+	}
 
 	method estaListoParaSembrar(){
 			return false
