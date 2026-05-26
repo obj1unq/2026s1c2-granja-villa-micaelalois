@@ -6,6 +6,11 @@ class Maiz {
  var property estado = semillaMaiz
  var property position = game.at(1, 1)
 
+	method estaListoParaCosechar(){
+		return estado.estaListoParaCosechar()
+
+	}
+
 	method estaListoParaRegar(){
 		return estado.estaListoParaRegar()
 	}
@@ -23,9 +28,7 @@ class Maiz {
          estado.siguienteEstado(self)
     }
 
-	method estaListoParaCosechar(){
-		return self.estado()
-	}
+
 	
 
 }
@@ -34,6 +37,10 @@ class Trigo {
 	 var property estado = etapaDeEvolucion0
      var property position = game.at(1, 1)
 
+
+    method estaListoParaCosechar(){
+		return estado.estaListoParaCosechar()
+	}
 
 	method estaListoParaRegar(){
 		return estado.estaListoParaRegar()
@@ -58,6 +65,10 @@ class Trigo {
 class Tomaco {
 	var property estado = tomacoRecienPlantado
 	var property position = game.at(1, 1)
+
+	method estaListoParaCosechar(){
+		return estado.estaListoParaCosechar()
+	}
 
 	method estaListoParaRegar(){
 		return estado.estaListoParaRegar()

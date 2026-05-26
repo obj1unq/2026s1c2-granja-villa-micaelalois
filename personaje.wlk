@@ -9,6 +9,7 @@ import granja.*
 object granjero {
 	var property position = game.center()
 	const property image = "fplayer.png"
+	var property plantasCosechadasHastaAhora = []
 
 
 method sembrarMaiz(){
@@ -20,7 +21,7 @@ method sembrarMaiz(){
 method sembrarTrigo(){
 	if(granja.sePuedeSembrarAca()){
 	game.addVisual(new Trigo(position=game.at(self.coordenadaEnXDelGranjero(), self.coordenadaEnYDelGranjero()), estado = etapaDeEvolucion0))
-}
+} 
 }
 
 method sembrarTomaco(){
@@ -49,18 +50,15 @@ method regar() {
     }
 }
 
+
+method cosechar(){
+  if(granja.esPosibleCosecharAca()){
+    plantasCosechadasHastaAhora.add(granja.objetosSinGranjero().first())
+	game.removeVisual(granja.objetosSinGranjero().first())
+  }
 }
 
-
-
-// // method cosechar(){
-// // //  // Verificar que haya un cultivo listo para cosechar//
-// // //  if (game.getObjectsIn(self.position()).estaListoParaCosechar())
-// // //  game.getObjectsIn(self.position())  //ACá incluye al granjero?// 
-// // //  //MODELAR UNA GRANJA Y PREGUNTARLE A LA GRANJA QUE CULTIVO HAY/ 
-// }
-
-
+}
 
 
 

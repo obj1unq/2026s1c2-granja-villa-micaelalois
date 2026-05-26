@@ -5,6 +5,11 @@ import wollok.game.*
 
 object granja{
 
+method esPosibleCosecharAca(){
+    return (!self.estaPosicionEstaVacia() && self.cultivoActual().estaListoParaCosechar())
+}
+
+
 method estaPosicionEstaVacia(){
 	return game.getObjectsIn(granjero.position()).size() <= 1
 }
@@ -21,9 +26,9 @@ method objetosSinGranjero() {
         return game.getObjectsIn(granjero.position()).filter({ obj => obj != granjero })
     }
 
-    method cultivoActual() {
+method cultivoActual() {
         return self.objetosSinGranjero().first()
-    }
+}
 
 
 method sePuedeSembrarAca(){
