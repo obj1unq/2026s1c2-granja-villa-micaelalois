@@ -2,6 +2,25 @@ import wollok.game.*
 import personaje.* 
 import granja.*
 
+
+
+class Aspersor{
+	var property position = game.at(1; 1)
+
+	method image(){
+		return "aspersor.png"
+	}
+	method regarPlantasAlrededor(){
+		
+
+      
+	}
+
+	method regar(position){
+		
+	}
+
+}
 class Maiz {
  var property estado = semillaMaiz
  var property position = game.at(1, 1)

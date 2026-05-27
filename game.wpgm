@@ -17,6 +17,7 @@ program farmville {
 	keyboard.c().onPressDo({ granjero.cosechar()})
 	keyboard.v().onPressDo({ granjero.vender()})
 	keyboard.space().onPressDo({ granjero.darInformacionDeCosechaYOro()})
+	keyboard.space().onPressDo({ granjero.dejarAspersor()})
 
 
 
