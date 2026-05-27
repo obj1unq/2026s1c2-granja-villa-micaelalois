@@ -31,12 +31,14 @@ class Aspersor{
 	}
 
 	method regarPorAspersorEnPosicion(positionPlanta){
-		if(granja.hayAlgoParaRegarAca()){
-			granja.cultivoActual().crecer()
-		}
+		 const objetosEnEsaPosicion = game.getObjectsIn(positionPlanta)
+        const cultivosEncontrados = objetosEnEsaPosicion.filter({ obj => obj != granjero })
         
-	}
+        if (!cultivosEncontrados.isEmpty() && cultivosEncontrados.first().estaListoParaRegar()) {
+            cultivosEncontrados.first().crecer()
 
+	}
+	}
 	method regarPlantaHaciaLaDerechaSiSePuede(){
 		  if(self.position().x() < 9){
 			self.regarPlantaHaciaLaDerecha()
