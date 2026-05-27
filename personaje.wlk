@@ -60,9 +60,55 @@ method cosechar(){
 }
 
 method vender(){
-	const gananciasEnEstaInstancia = (plantasCosechadasHastaAhora.sum({planta => planta.valorDeVenta()}))//NO OLVIDARSE LAS LLAVES DEL LADO DE ADENTRO
-    self.oroAcumulado(self.oroAcumulado() + gananciasEnEstaInstancia)
-	plantasCosechadasHastaAhora.clear() 
+	 const mercadoActual = self.mercadoDondeEstoyParado()
+     const montoACobrar = self.valorTotalDeLaCosecha()
+if (self.tieneMercaderiaParaVender() && self.estaParadoEnUnMercado() && self.mercadoDondeEstoyParado().tienePlataSuficiente(self.valorTotalDeLaCosecha())) {
+        
+            self.realizarTransaccion(mercadoActual, montoACobrar)
+        
+    } else { 
+        game.say(self, "No tengo mercadería, no es el lugar correcto o al mercado no le alcanza la plata")
+    }
+}
+
+
+method realizarVenta(){
+	const mercadoActual = self.mercadoDondeEstoyParado()
+    const totalACobrar = self.valorTotalDeLaCosecha()
+ if (mercadoActual.tienePlataSuficiente(totalACobrar)) {
+        self.realizarTransaccion(mercadoActual, totalACobrar)
+    } else {
+        game.say(self, "A este mercado no le alcanza la plata para pagarme")
+    }
+}
+method tieneMercaderiaParaVender(){
+	return (not plantasCosechadasHastaAhora.isEmpty())     
+}
+
+method estaParadoEnUnMercado(){
+   const objetosEnEstaUbicacion = game.getObjectsIn(self.position()).filter({ obj => obj != self })
+return  objetosEnEstaUbicacion.any({ supuestoMercado => granja.mercados().contains(supuestoMercado) })
+}
+   
+
+    
+
+method mercadoDondeEstoyParado() {
+    return granja.mercados().find({ mercado => mercado.position() == self.position() })
+}
+
+
+
+method valorTotalDeLaCosecha() {
+    return plantasCosechadasHastaAhora.sum({ planta => planta.valorDeVenta() })
+}
+
+method realizarTransaccion(mercado, monto) {
+    mercado.comprarCosecha(plantasCosechadasHastaAhora, monto)
+    self.oroAcumulado(self.oroAcumulado() + monto)
+    plantasCosechadasHastaAhora.clear()
+    
+    game.say(self, "Se realizó la venta, cobré " + monto + " monedas.")
 }
 
 method darInformacionDeCosechaYOro(){

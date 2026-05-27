@@ -4,7 +4,8 @@ import wollok.game.*
 
 
 object granja{
-
+const property mercados = [new Mercado(position = game.at(8, 8), monedas = 400),
+     new Mercado(position = game.at(1, 1), monedas = 3000)]
 method esPosibleCosecharAca(){
     return (!self.estaPosicionEstaVacia() && self.cultivoActual().estaListoParaCosechar())
 }
@@ -35,4 +36,26 @@ method sePuedeSembrarAca(){
 	return self.estaPosicionEstaVacia()
 }
 
+}
+
+
+class Mercado {
+    var property position = game.at(0, 0)
+    var property monedas = 0
+    const property mercaderia = [] 
+    
+    method estaListoParaRegar(){
+        return false
+    }
+    
+    method image() = "market.png"
+    
+    method tienePlataSuficiente(monto) {
+        return monedas >= monto
+    }
+    
+    method comprarCosecha(plantas, totalAPagar) {
+        monedas = monedas - totalAPagar
+        mercaderia.addAll(plantas)
+    }
 }

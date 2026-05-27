@@ -5,8 +5,19 @@ import granja.*
 
 
 class Aspersor{
-	var property position = game.at(1; 1)
+	var property position = game.at(1, 1)
 
+
+	method estaListoParaRegar() {
+        return false 
+    }
+	method estaListoParaCosechar() {
+        return false 
+    }
+    
+    method crecer() {
+        
+    }
 	method image(){
 		return "aspersor.png"
 	}

@@ -22,6 +22,8 @@ program farmville {
 
 
 	
+
+    granja.mercados().forEach({ mercado => game.addVisual(mercado) })
  	game.addVisualCharacter(granjero) //Ya hace que se mueva solo con las teclas
  	
  	//  COMIENZA
