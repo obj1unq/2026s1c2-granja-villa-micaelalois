@@ -70,9 +70,9 @@ method darInformacionDeCosechaYOro(){
 }
 
 method dejarAspersor(){
-		game.addVisual(new Aspersor(position=game.at(self.coordenadaEnXDelGranjero(), self.coordenadaEnYDelGranjero())))
-        aspersor.regarPlantasLimitrofes()
-}
+	const aspersor1 = new Aspersor(position=game.at(self.coordenadaEnXDelGranjero(), self.coordenadaEnYDelGranjero())))
+		game.addVisual(aspersor1)
+game.onTick(1000, "aspersor1" + aspersor1.identity().toString(), { aspersor1.regarPlantasAlrededor()})}
 }
 
 

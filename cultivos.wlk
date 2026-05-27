@@ -11,15 +11,69 @@ class Aspersor{
 		return "aspersor.png"
 	}
 	method regarPlantasAlrededor(){
-		
+		self.regarPlantaHaciaLaIzquierdaSiSePuede()
+		self.regarPlantaHaciaLaDerechaSiSePuede()
+		self.regarPlantaHaciaArribaSiSePuede()
+		self.regarPlantaHaciaAbajoSiSePuede()
 
       
 	}
 
-	method regar(position){
-		
+	method  regarPlantaHaciaLaIzquierdaSiSePuede(){
+        if(self.position().x() > 0){
+			self.regarPlantaHaciaLaIzquierda()
+
+		}
 	}
 
+	method regarPlantaHaciaLaIzquierda(){
+		self.regarPorAspersorEnPosicion(game.at(self.position().x() -1, self.position().y()))
+	}
+
+	method regarPorAspersorEnPosicion(positionPlanta){
+		if(granja.hayAlgoParaRegarAca()){
+			granja.cultivoActual().crecer()
+		}
+        
+	}
+
+	method regarPlantaHaciaLaDerechaSiSePuede(){
+		  if(self.position().x() < 9){
+			self.regarPlantaHaciaLaDerecha()
+	    }
+
+	}
+	method  regarPlantaHaciaLaDerecha(){
+		self.regarPorAspersorEnPosicion(game.at(self.position().x() + 1, self.position().y()))
+	}
+
+
+
+	method regarPlantaHaciaArribaSiSePuede(){
+		 if(self.position().y() < 9){
+			self.regarPlantaHaciaArriba()
+	    }
+
+	}
+
+	method regarPlantaHaciaArriba(){
+	self.regarPorAspersorEnPosicion(game.at(self.position().x(), self.position().y()+1))
+
+	}
+	
+	method regarPlantaHaciaAbajoSiSePuede(){
+		 if(self.position().y() >0){
+			self.regarPlantaHaciaAbajo()
+	    
+	}
+
+	}
+
+	method regarPlantaHaciaAbajo(){
+	self.regarPorAspersorEnPosicion(game.at(self.position().x(), self.position().y()-1))
+
+	}
+	
 }
 class Maiz {
  var property estado = semillaMaiz
@@ -115,7 +169,6 @@ class Tomaco {
 	
 	method crecer() {
          estado.siguienteEstado(self)
-		 game.removeVisual(self)
 
     }
 }
@@ -285,7 +338,6 @@ object tomacoRecienPlantado{
         } else {
             planta.position(game.at(planta.position().x(), 0))
         }
-		game.addVisual(planta.position())
     }
 
 
