@@ -1,0 +1,62 @@
+import wollok.game.*
+import personaje.*
+import cultivos.*
+import granja.*
+
+
+describe "Crecimiento de las plantas" {
+   
+    test "El Maiz crece si lo regas" {
+        const maiz = new Maiz(position = game.at(1,1), estado = semillaMaiz)
+        
+        assert.equals(semillaMaiz, maiz.estado())
+        
+        maiz.crecer()
+        
+        assert.that(maiz.estado() != semillaMaiz)
+    }
+
+    test  "El trigo crece si lo regas"{
+    const trigo = new Trigo(position = game.at(1,1), estado = etapaDeEvolucion0)
+        
+        assert.equals(etapaDeEvolucion0, trigo.estado())
+        
+        trigo.crecer()
+        
+        assert.that(trigo.estado() != etapaDeEvolucion0)
+}
+
+ test  "El tomaco crece si lo regas"{
+    const tomaco = new Tomaco(position = game.at(1,1), estado = tomacoRecienPlantado)
+        
+        assert.equals(tomacoRecienPlantado, tomaco.estado())
+        
+        tomaco.crecer()
+        
+        assert.that(tomaco.estado() != tomacoRecienPlantado)
+
+}
+
+    test "El granjero no puede vender sin mercaderia"{
+        const mercado = new Mercado(position = game.at(3,3), monedas = 500)
+        granja.mercados().add(mercado)
+        
+        granjero.position(game.at(3,3))
+        
+        granjero.vender()
+        
+        assert.equals(0, granjero.oroAcumulado())
+    }
+
+
+    test " Dos aspersores juntos pueden interactuar sin error" {
+        const aspersor1 = new Aspersor(position = game.at(4,4))
+        const aspersor2 = new Aspersor(position = game.at(5,4)) 
+        
+        game.addVisual(aspersor1)
+        game.addVisual(aspersor2)
+        
+        aspersor1.regarPlantasAlrededor()
+                assert.equals(game.at(5,4), aspersor2.position())
+    }
+}

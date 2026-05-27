@@ -1,6 +1,7 @@
 import wollok.game.*
 import personaje.*
 import cultivos.*
+import granja.*
 
 program farmville {
 	//  CONFIG	
@@ -9,10 +10,24 @@ program farmville {
 	game.width(10)
 	game.ground("ground.png")
 
-	//  VISUALES
- 	game.addVisualCharacter(personaje)
- 	game.addVisual(new Maiz()) // Se agrega a modo de prueba
+	keyboard.m().onPressDo({ granjero.sembrarMaiz()})
+	keyboard.t().onPressDo({ granjero.sembrarTrigo()})
+	keyboard.o().onPressDo({ granjero.sembrarTomaco()})
+	keyboard.r().onPressDo({ granjero.regar()})
+	keyboard.c().onPressDo({ granjero.cosechar()})
+	keyboard.v().onPressDo({ granjero.vender()})
+	keyboard.space().onPressDo({ granjero.darInformacionDeCosechaYOro()})
+	keyboard.a().onPressDo({ granjero.dejarAspersor()})
+
+
+
+	
+
+    granja.mercados().forEach({ mercado => game.addVisual(mercado) })
+ 	game.addVisualCharacter(granjero) //Ya hace que se mueva solo con las teclas
  	
  	//  COMIENZA
 	game.start()
 }
+
+
